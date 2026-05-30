@@ -1,0 +1,344 @@
+/* =========================================================
+   小俣歯科医院 インプラントLP
+   テーマ：山梨の湖畔（緑・山・湖／穏やか・安心・誠実）
+   ========================================================= */
+
+:root {
+  /* 配色 */
+  --forest: #2f5b4c;   /* 森緑 */
+  --sage: #8fb3a0;     /* セージ */
+  --lake: #5d9aab;     /* 湖（明） */
+  --lake-deep: #356b7d;/* 湖（深） */
+  --cream: #f7f4ea;    /* クリーム */
+  --clay: #cf9a5b;     /* アクセント（クレイ） */
+
+  --ink: #2c332f;      /* 文字色 */
+  --ink-soft: #56615a;
+  --line: #e6e0cf;
+  --white: #ffffff;
+
+  --line-soft: rgba(47, 91, 76, 0.12);
+
+  /* フォント */
+  --font-head: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+  --font-body: "Zen Maru Gothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+
+  --radius: 16px;
+  --radius-lg: 24px;
+  --maxw: 1080px;
+  --shadow: 0 10px 30px rgba(47, 91, 76, 0.10);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.85;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  /* スマホ固定バーの高さ分の余白 */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.4; letter-spacing: 0.01em; }
+
+a { color: var(--lake-deep); }
+
+img, svg { max-width: 100%; display: block; }
+
+.container {
+  width: min(100% - 40px, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ====================== ヘッダー ====================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 244, 234, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--forest); }
+.brand-mark { display: inline-flex; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-name { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; }
+.brand-sub { font-size: 0.72rem; color: var(--ink-soft); }
+.header-nav { display: flex; align-items: center; gap: 22px; }
+.header-nav > a { text-decoration: none; color: var(--ink); font-size: 0.95rem; }
+.header-nav > a:hover { color: var(--forest); }
+.header-cta {
+  background: var(--forest);
+  color: var(--white) !important;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ====================== ボタン ====================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-primary { background: var(--forest); color: var(--white); }
+.btn-secondary { background: var(--white); color: var(--forest); border-color: var(--forest); }
+.btn-line { background: #06c755; color: var(--white); }
+.btn-lg { padding: 16px 32px; font-size: 1.05rem; }
+
+/* ====================== ヒーロー ====================== */
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero-bg { position: absolute; inset: 0; z-index: -1; }
+.hero-scene { width: 100%; height: 100%; min-height: 100%; object-fit: cover; }
+.hero-inner {
+  display: flex;
+  align-items: center;
+  min-height: clamp(460px, 70vh, 640px);
+  padding: 60px 0;
+}
+.hero-copy {
+  background: rgba(247, 244, 234, 0.78);
+  backdrop-filter: blur(4px);
+  padding: 32px 34px;
+  border-radius: var(--radius-lg);
+  max-width: 620px;
+  box-shadow: var(--shadow);
+}
+.hero-eyebrow { color: var(--lake-deep); font-weight: 700; margin: 0 0 8px; font-size: 0.9rem; letter-spacing: 0.08em; }
+.hero-title { font-size: clamp(2rem, 5.4vw, 3.1rem); margin: 0 0 18px; color: var(--forest); }
+.hero-lead { margin: 0 0 26px; color: var(--ink); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-note { margin: 20px 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* 雲・葉のゆるいアニメ（波は立てない） */
+.cloud-1 { animation: drift 38s ease-in-out infinite alternate; }
+.cloud-2 { animation: drift 52s ease-in-out infinite alternate-reverse; }
+@keyframes drift {
+  from { transform: translateX(-30px); }
+  to   { transform: translateX(40px); }
+}
+.leaf-1 { transform-origin: 110px 250px; animation: sway 9s ease-in-out infinite; }
+.leaf-2 { transform-origin: 1357px 300px; animation: sway 11s ease-in-out infinite reverse; }
+@keyframes sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(6deg); }
+}
+
+/* ====================== セクション共通 ====================== */
+.section { padding: 76px 0; }
+.section-head { max-width: 720px; margin: 0 auto 44px; text-align: center; }
+.section-eyebrow {
+  display: inline-block;
+  color: var(--clay);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  margin: 0 0 10px;
+}
+.section-title { font-size: clamp(1.5rem, 3.4vw, 2.05rem); margin: 0 0 14px; color: var(--forest); }
+.section-desc { margin: 0; color: var(--ink-soft); }
+
+.section-need { background: var(--white); }
+.section-worry { background: var(--cream); }
+.section-trust { background: linear-gradient(180deg, #eef4f1, var(--white)); }
+.section-cost { background: var(--white); }
+.section-other { background: var(--cream); }
+.section-clinic { background: var(--white); }
+
+/* ====================== カードグリッド ====================== */
+.card-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+}
+.section-worry .card, .section-other .card { background: var(--white); }
+.card-icon { display: inline-flex; margin-bottom: 12px; }
+.card-title { font-size: 1.15rem; margin: 0 0 10px; color: var(--forest); }
+.card-text { margin: 0 0 8px; color: var(--ink-soft); }
+
+/* ====================== Q&A ====================== */
+.qa-list { max-width: 760px; margin: 0 auto; display: grid; gap: 14px; }
+.qa {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.qa > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 22px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qa > summary::-webkit-details-marker { display: none; }
+.qa-q {
+  flex: none;
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--sage); color: var(--white);
+  border-radius: 50%; font-size: 0.9rem;
+}
+.qa[open] > summary { background: #eef4f1; }
+.qa-body { padding: 0 22px 22px; }
+.qa-body p { margin: 0; color: var(--ink-soft); }
+
+/* ====================== 当院での安心 ====================== */
+.trust-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+.trust-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  box-shadow: var(--shadow);
+}
+.trust-card-title { color: var(--forest); margin: 0 0 14px; font-size: 1.25rem; }
+.flow-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.flow-list li { display: flex; gap: 14px; align-items: flex-start; color: var(--ink); }
+.flow-step {
+  flex: none;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--forest); color: var(--white);
+  border-radius: 50%; font-family: var(--font-head); font-weight: 600;
+}
+.flow-note { margin: 16px 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* ====================== 費用・リスク ====================== */
+.cost-box {
+  max-width: 860px; margin: 0 auto;
+  display: grid; gap: 0;
+  grid-template-columns: 1fr 1.3fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.cost-price { background: var(--forest); color: var(--white); padding: 34px 30px; }
+.cost-label { margin: 0 0 10px; font-size: 0.9rem; opacity: 0.9; }
+.cost-value { margin: 0 0 12px; font-family: var(--font-head); font-size: 1.4rem; }
+.cost-value strong { font-size: 2.4rem; }
+.cost-sub { margin: 0; font-size: 0.82rem; opacity: 0.85; }
+.cost-risk { padding: 34px 30px; }
+.cost-risk-title { margin: 0 0 14px; color: var(--forest); font-size: 1.2rem; }
+.cost-risk ul { margin: 0 0 16px; padding-left: 1.2em; color: var(--ink-soft); }
+.cost-risk li { margin-bottom: 8px; }
+.cost-note { margin: 0; font-size: 0.9rem; background: #fbf3e6; border-left: 4px solid var(--clay); padding: 12px 14px; border-radius: 8px; color: var(--ink); }
+
+/* ====================== 院案内 ====================== */
+.clinic-info { max-width: 760px; margin: 0 auto; background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 28px; }
+.clinic-info dl { margin: 0; }
+.clinic-info dl > div { display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.clinic-info dl > div:last-child { border-bottom: none; }
+.clinic-info dt { flex: none; width: 96px; font-weight: 700; color: var(--forest); }
+.clinic-info dd { margin: 0; color: var(--ink); }
+.clinic-rest { color: var(--clay); font-weight: 700; }
+
+/* ====================== 最終CTA ====================== */
+.section-final-cta {
+  background: linear-gradient(135deg, var(--lake-deep), var(--forest));
+  color: var(--white);
+  text-align: center;
+}
+.cta-title { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 0 0 12px; color: var(--white); }
+.cta-lead { margin: 0 0 28px; opacity: 0.95; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.section-final-cta .btn-secondary { background: var(--white); color: var(--forest); border-color: var(--white); }
+
+/* ====================== フッター ====================== */
+.site-footer { background: var(--ink); color: #d9ded9; padding: 40px 0 96px; font-size: 0.9rem; }
+.footer-inner { text-align: center; display: grid; gap: 6px; }
+.footer-name { font-family: var(--font-head); font-size: 1.2rem; color: var(--white); margin: 0; }
+.footer-addr, .footer-note, .footer-copy { margin: 0; }
+.footer-note { font-size: 0.8rem; opacity: 0.8; }
+.footer-copy { margin-top: 10px; opacity: 0.7; font-size: 0.78rem; }
+.site-footer a { color: #b9d6cf; }
+
+/* ====================== スマホ固定バー ====================== */
+.mobile-bar { display: none; }
+
+/* ====================== レスポンシブ（スマホ最優先の調整） ====================== */
+@media (max-width: 880px) {
+  .header-nav > a:not(.header-cta) { display: none; }
+  .cost-box { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hero-copy { padding: 26px 22px; }
+  .section { padding: 56px 0; }
+
+  /* スマホ下部固定 予約バー */
+  .mobile-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 20px rgba(47, 91, 76, 0.12);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-bar-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; padding: 10px 4px;
+    text-decoration: none; color: var(--forest); font-size: 0.78rem; font-weight: 700;
+    border-right: 1px solid var(--line);
+  }
+  .mobile-bar-item:last-child { border-right: none; }
+  .mobile-bar-ic { font-size: 1.2rem; }
+  .mobile-bar-line { color: #06c755; }
+  /* バーの高さ分、本文末尾に余白 */
+  .site-footer { padding-bottom: 110px; }
+}
+
+/* ====================== スクロール フェードイン ====================== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ====================== モーション軽減 ====================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cloud-1, .cloud-2, .leaf-1, .leaf-2 { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn { transition: none; }
+}
